@@ -12,6 +12,8 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import axios from 'axios';
+import { useState } from 'react';
 
 function Copyright(props) {
   return (
@@ -20,23 +22,36 @@ function Copyright(props) {
       <Link color="inherit" href="https://mui.com/">
         Your Website
       </Link>{' '}
-      {new Date().getFullYear()}
+      {new Date().getFullYear()}                    
       {'.'}
     </Typography>
   );
-}
+}                  
 
 const theme = createTheme();
 
 export default function SignIn() {
+  const [email, setEmail] = useState("")
+  const [pass, setPass] = useState("")
+
+
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
     // eslint-disable-next-line no-console
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+    const credential = {
+      email: email,
+      pass: pass,
+    }
+    axios.post("http://localhost:5000/login",credential)
+    .then((res)=>{
+      localStorage.setItem("token",res.data.token)
+      localStorage.setItem("user",res.data.id)
+      window.location = "/profile"
+    })
+    .catch((err)=>{
+      console.log(err)
+    })
   };
 
   return (
@@ -55,11 +70,12 @@ export default function SignIn() {
           <Typography component="h1" variant="h5" className='text-center text-danger'>
             Sign form
           </Typography>
-          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+          <Box component="form" noValidate sx={{ mt: 1 }}>
             <TextField
               margin="normal"
               required
               fullWidth
+              onChange={(e)=>(setEmail(e.target.value))}
               id="email"
               label="Email Address"
               name="email"
@@ -70,6 +86,7 @@ export default function SignIn() {
               margin="normal"
               required
               fullWidth
+              onChange={(e)=>(setPass(e.target.value))}
               name="password"
               label="Password"
               type="password"
@@ -80,6 +97,7 @@ export default function SignIn() {
             <Button
               type="submit"
               fullWidth
+              onClick={(e)=>(handleSubmit(e))}
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >

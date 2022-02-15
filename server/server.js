@@ -8,7 +8,7 @@ dbConnect()
 app.use(cors())
 app.use(express.json())
 
-const registrationRoutes = require ("./Routes/RagistrationRoutes")
+const registrationRoutes = require ("./Routes/UserRoutes")
 
 app.use ("/",registrationRoutes)  
 

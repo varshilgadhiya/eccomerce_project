@@ -17,10 +17,9 @@ export default function SignIn() {
   const [name, setname] = React.useState('')
   const [email, setemail] = React.useState('')
   const [phone, setphone] = React.useState('')
+  const [pic,setpic] = React.useState([])
   const [pass, setpass] = React.useState('')
-  const [pic, setpic] = React.useState([])
   const [conpass, setconpass] = React.useState('')
-  const [data, setData] = React.useState([])
 
   const validation = (e, name, email, phone, pass, conpass) => {
     e.preventDefault()
@@ -46,9 +45,14 @@ export default function SignIn() {
       data.append("conpass", conpass)
 
       alert("added successfully") 
+
+
+      axios.post("http://localhost:5000/create/",data)
+        .then((res) => console.log(res))
+        .catch((err) => console.log(err));
+
     }
   }
-
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
@@ -98,6 +102,7 @@ export default function SignIn() {
               autoComplete="email"
               autoFocus
             />
+
             <input
               type="file"
               className='my-3'
@@ -109,6 +114,7 @@ export default function SignIn() {
               label="Profilr pic"
               name="pic"
             />
+            
             <TextField
               margin="normal"
               required

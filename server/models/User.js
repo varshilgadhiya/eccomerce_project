@@ -2,23 +2,25 @@ const mongoose = require('mongoose');
 
 const registrationSchema= mongoose.Schema({
 
-    Firstname: {
-        type: String
-    },
-    Lastname: {
+    name:{
         type:String
     },
-    Email: {
+    email: {
         type:String
     },
-
-    Phone: {
+    phone: {
         type:Number
     },
-
+    pic :{
+        type:String
+    },
     pass :{
         type :String
     },
+    
+    conpass :{
+        type:String
+    }
 
     
 },{timestamps:true} )
