@@ -8,7 +8,6 @@ import Navigationbar from './component/user/Navigationbar';
 
 function App() {
   return (
-<<<<<<< Updated upstream
    <BrowserRouter>
    <Routes>
      <Route exact path = "/" element={<Loginform/>}/>
@@ -16,14 +15,6 @@ function App() {
      <Route exact path ="/navigationbar" element={<Navigationbar/>}/>
      </Routes>
      </BrowserRouter>
-=======
-    <BrowserRouter>
-      <Routes>
-        <Route exact path="/" element={<Loginform />} />
-        <Route exact path="/registration" element={<Registrationform />} />
-      </Routes>
-    </BrowserRouter>
->>>>>>> Stashed changes
   );
 }
 
