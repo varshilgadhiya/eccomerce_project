@@ -42,6 +42,7 @@ export default function SignIn() {
       data.append("email", email)
       data.append("pass", pass)
       data.append("phone", phone)
+      data.append("pic",pic)
       data.append("conpass", conpass)
 
       alert("added successfully") 
@@ -107,7 +108,6 @@ export default function SignIn() {
               onChange={(e) => setpic(e.target.files)}
               label="Profilr pic"
               name="pic"
-              multiple
             />
             <TextField
               margin="normal"
@@ -142,8 +142,8 @@ export default function SignIn() {
                Registration
             </button>
          
-            <h5>
-                    Don't have an account?  <a href="http://localhost:3000" >Login in</a></h5>
+            <h4>
+                    Don't have an account?  <a style={{marginLeft:"25px"}} href="http://localhost:3000" >Login in</a></h4>
         
             </Box>
         </Box>
