@@ -5,16 +5,30 @@ import Registrationform from './component/Registrationform';
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Loginform from './component/Loginform'
 import Navigationbar from './component/user/Navigationbar';
+import Profile from './component/user/Profile';
+import Logout from './component/Logout';
 
 function App() {
   return (
-   <BrowserRouter>
-   <Routes>
-     <Route exact path = "/" element={<Loginform/>}/>
-     <Route exact path="/registration" element={<Registrationform/>}/>
-     <Route exact path ="/navigationbar" element={<Navigationbar/>}/>
-     </Routes>
-     </BrowserRouter>
+    <>
+      {
+        localStorage.getItem("user") ?
+          <BrowserRouter>
+          <Navigationbar />
+            <Routes>
+              <Route exact path="/profile" element={<Profile/>} />
+              <Route exact path="/logout" element={<Logout/>} />
+            </Routes>
+          </BrowserRouter>
+          :
+          <BrowserRouter>
+            <Routes>
+              <Route exact path="/" element={<Loginform />} />
+              <Route exact path="/registration" element={<Registrationform />} />
+            </Routes>
+          </BrowserRouter>
+      }
+    </>
   );
 }
 
