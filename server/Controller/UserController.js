@@ -1,6 +1,7 @@
 const { uploadsingle } = require("../middleware/cloudinary");
 const { signAccessToken } = require("../middleware/jwt");
 const User = require("../models/User");
+const fs = require("fs")
 
 exports.allUser = async (req, res) => {
     try {
@@ -13,27 +14,34 @@ exports.allUser = async (req, res) => {
 
 exports.addUser = async (req, res) => {
     // try {
-        console.log(req.body)
-        console.log(req.file)
-        const { name, email, phone, pass, conpass } = req.body
-        const pic = req.file
-        if(pic.path){
-            var path = await uploadsingle(pic.path)
-        }
-        console.log(path)
-        const createuser = await User.create({
-            name: name,
-            email: email,
-            phone: phone,
-            role:"user",
-            pic: path,
-            pass: pass,
-            conpass: conpass
+    console.log(req.body)
+    console.log(req.file)
+    const { name, email, phone, pass, conpass } = req.body
+    const pic = req.file
+    if (pic.path) {
+        var path = await uploadsingle(pic.path)
+    }
+    fs.unlink(pic.path, () => {
+        res.send({
+            status: "200",
+            responseType: "string",
+            response: "success"
         })
-        await createuser.save();
-        if (createuser) {
-            res.json({ success: "user has been create"});
-        }
+    })
+    console.log(path)
+    const createuser = await User.create({
+        name: name,
+        email: email,
+        phone: phone,
+        role: "user",
+        pic: path,
+        pass: pass,
+        conpass: conpass
+    })
+    await createuser.save();
+    if (createuser) {
+        res.json({ success: "user has been create" });
+    }
     // } catch {
     //     res.status(400).json({ error: "create user faild..." });
     // }
@@ -43,17 +51,19 @@ exports.addUser = async (req, res) => {
 
 
 exports.Login = async (req, res) => {
-    const { email, pass } = req.body
-    const authUser = await User.findOne({ email: email, pass: pass })
-    const accessToken = await signAccessToken(authUser)
-    if (authUser) {
-        res.json({
-            "token": accessToken,
-            "id": authUser._id,
-            "role": authUser.role
-        })
-    }
-    else {
+    try {
+        const { email, pass } = req.body
+        const authUser = await User.findOne({ email: email, pass: pass })
+        const accessToken = await signAccessToken(authUser)
+        console.log(authUser);
+        if (authUser) {
+            res.json({
+                "token": accessToken,
+                "id": authUser._id,
+                "role": authUser.role,
+            })
+        }
+    } catch {
         res.status(400).send({ msg: 'Error' })
     }
 }

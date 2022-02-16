@@ -16,5 +16,5 @@ app.use ("/",registrationRoutes)
 
 
 app.listen(process.env.PORT, () => {
-    console.log(`Server has been Started on Port ${process.env.PORT}`);
+    console.log(`Server has been Started on http://localhost:${process.env.PORT}`);
 })
