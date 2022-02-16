@@ -110,7 +110,7 @@ export default function SignIn() {
               required
               fullWidth
               id="pic"
-              onChange={(e) => setpic(e.target.files)}
+              onChange={(e) => setpic(e.target.files[0])}
               label="Profilr pic"
               name="pic"
             />

@@ -1,3 +1,4 @@
+const { uploadsingle } = require("../middleware/cloudinary");
 const { signAccessToken } = require("../middleware/jwt");
 const User = require("../models/User");
 
@@ -11,25 +12,31 @@ exports.allUser = async (req, res) => {
 }
 
 exports.addUser = async (req, res) => {
-    try {
+    // try {
         console.log(req.body)
+        console.log(req.file)
         const { name, email, phone, pass, conpass } = req.body
+        const pic = req.file
+        if(pic.path){
+            var path = await uploadsingle(pic.path)
+        }
+        console.log(path)
         const createuser = await User.create({
             name: name,
             email: email,
             phone: phone,
             role:"user",
-            // pic: pic,
+            pic: path,
             pass: pass,
             conpass: conpass
         })
-        createuser.save();
+        await createuser.save();
         if (createuser) {
             res.json({ success: "user has been create"});
         }
-    } catch {
-        res.status(400).json({ error: "create user faild..." });
-    }
+    // } catch {
+    //     res.status(400).json({ error: "create user faild..." });
+    // }
 };
 
 
