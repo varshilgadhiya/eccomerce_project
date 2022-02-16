@@ -18,13 +18,14 @@ exports.addUser = async (req, res) => {
             name: name,
             email: email,
             phone: phone,
+            role:"user",
             // pic: pic,
             pass: pass,
             conpass: conpass
         })
         createuser.save();
         if (createuser) {
-            res.json({ success: "course has been create", createuser });
+            res.json({ success: "user has been create"});
         }
     } catch {
         res.status(400).json({ error: "create user faild..." });
@@ -40,8 +41,9 @@ exports.Login = async (req, res) => {
     const accessToken = await signAccessToken(authUser)
     if (authUser) {
         res.json({
-            "token":accessToken,
-            "id":authUser._id
+            "token": accessToken,
+            "id": authUser._id,
+            "role": authUser.role
         })
     }
     else {

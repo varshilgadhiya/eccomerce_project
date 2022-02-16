@@ -13,14 +13,31 @@ function App() {
     <>
       {
         localStorage.getItem("user") ?
-          <BrowserRouter>
-          <Navigationbar />
-            <Routes>
-              <Route exact path="/profile" element={<Profile/>} />
-              <Route exact path="/logout" element={<Logout/>} />
-            </Routes>
-          </BrowserRouter>
+        //auth route
+          <>
+            {
+              localStorage.getItem("role") === "admin" ?
+              //admin route
+                <BrowserRouter>
+                  <Navigationbar />
+                  <Routes>
+                    <Route exact path="/profile" element={<Profile />} />
+                    <Route exact path="/logout" element={<Logout />} />
+                  </Routes>
+                </BrowserRouter>
+                :
+                //user route
+                <BrowserRouter>
+                  <Navigationbar />
+                  <Routes>
+                    <Route exact path="/profile" element={<Profile />} />
+                    <Route exact path="/logout" element={<Logout />} />
+                  </Routes>
+                </BrowserRouter>
+            }
+          </>
           :
+          //non-auth route
           <BrowserRouter>
             <Routes>
               <Route exact path="/" element={<Loginform />} />

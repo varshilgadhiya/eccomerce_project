@@ -47,6 +47,7 @@ export default function SignIn() {
     .then((res)=>{
       localStorage.setItem("token",res.data.token)
       localStorage.setItem("user",res.data.id)
+      localStorage.setItem("role",res.data.role)
       window.location = "/profile"
     })
     .catch((err)=>{

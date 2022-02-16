@@ -14,10 +14,12 @@ const registrationSchema= mongoose.Schema({
     pic :{
         type:String
     },
+    role :{
+        type:String
+    },
     pass :{
         type :String
     },
-    
     conpass :{
         type:String
     }
