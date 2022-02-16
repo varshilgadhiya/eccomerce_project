@@ -9,8 +9,10 @@ app.use(cors())
 app.use(express.json())
 
 const registrationRoutes = require ("./Routes/UserRoutes")
+const productRoutes = require("./Routes/ProductRoutes")
 
-app.use ("/",registrationRoutes)  
+app.use ("/",registrationRoutes) 
+app.use("/",productRoutes)            
 
    
 
