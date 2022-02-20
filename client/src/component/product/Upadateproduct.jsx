@@ -1,134 +1,106 @@
-import * as React from 'react';
-import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import axios from 'axios'
-
+import * as React from "react";
+import Button from "@mui/material/Button";
+import CssBaseline from "@mui/material/CssBaseline";
+import TextField from "@mui/material/TextField";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import Container from "@mui/material/Container";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import axios from "axios";
+import { useState, useEffect } from "react";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
 
 const theme = createTheme();
 
 export default function Addproduct() {
+  const [coloumn, setcoloumn] = useState([]);
+  const { id } = useParams();
+  const navigate = useNavigate()
 
-    const [Productname, setProductname] = React.useState('')
-    const [Productprice, setProductprice] = React.useState('')
-    const [Productdiscription, setProductdiscription] = React.useState('')
-    const [Productoffer, setProductoffer] = React.useState()
-    const [Productcategory, setProductcategory] = React.useState('')
+  useEffect(() => {
+    axios.get(`http://localhost:5000/product/one/${id}`)
+      .then((res) => {
+        console.log(res.data);
+        setcoloumn(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
-
-    const validation = (e, Productname, Productprice, Productdiscription, Productoffer, Productcategory) => {
-        e.preventDefault()
-        if (Productname == "" || Productprice == "" || Productdiscription == "" || Productoffer == "" || Productcategory == "") {
-            alert("field can not empty")
-        }
-        else {
-            var data = new FormData
-            data.append("Productname", Productname)
-            data.append("Productprice", Productprice)
-            data.append("Productdiscrition", Productdiscription)
-            data.append("Productoffer", Productoffer)
-            data.append("Productcategory", Productcategory)
-
-
-            alert("added successfully")
-
-
-            axios.post("http://localhost:5000/Update", data)
-                .then((res) => console.log(res))
-                .catch((err) => console.log(err));
-
-        }
+  const handleUpdate = (e) => {
+    e.preventDefault();
+    const productprice = document.getElementById("price").value
+    const productoffer = document.getElementById("offer").value
+    if (productprice == "" || productoffer == "") {
+      alert("field can not empty");
+    } else {
+      var data = {
+        "productprice":productprice,
+        "productoffer":productoffer,
+      };
+      axios.post(`http://localhost:5000/product/update/${id}`, data)
+        .then((res) => navigate("/all-product"))
+        .catch((err) => console.log(err));
     }
-    return (
-        <ThemeProvider theme={theme}>
-            <Container component="main" maxWidth="xs">
-                <CssBaseline />
-                <Box
-                    sx={{
-                        marginTop: 2,
-                        display: 'flex',
-                        flexDirection: 'column',
-                        alignItems: 'center',
-                    }}
-                >
-                    <Typography component="h1" variant="h5" className='text-center text-danger'>
-                        Add Product
-                    </Typography>
-                    <Box component="form" noValidate sx={{ mt: 1 }}>
-                        <TextField
-                            margin="normal"
-                            required
-                            fullWidth
-                            id="Productname"
-                            label="Product Name"
-                            name="Full Name"
-                            onChange={(e) => setProductname(e.target.value)}
-                            autoFocus
-                        />
-                        <TextField
-                            margin="normal"
-                            required
-                            fullWidth
-                            label="Product price"
-                            id="Productprice"
-                            onChange={(e) => setProductprice(e.target.value)}
-                            name="price"
-                            type="number"
-                            autoFocus
-                        />
-                        <TextField
-                            margin="normal"
-                            required
-                            id="discription"
-                            fullWidth
-                            label="Product discription"
-                            onChange={(e) => setProductdiscription(e.target.value)}
-                            name="discription"
-                            type="string"
-                            autoFocus
-                        />
-
-                        <TextField
-                            margin="normal"
-                            required
-                            fullWidth
-                            label="Product offer"
-                            onChange={(e) => setProductoffer(e.target.value)}
-                            name="offer"
-                            type="string"
-                            id="offer"
-
-                        />
-                        <TextField
-                            margin="normal"
-                            required
-                            label="Product category"
-                            fullWidth
-                            onChange={(e) => setProductcategory(e.target.value)}
-                            name="category"
-
-                            type="string"
-                            id="category"
-
-                        />
-                        <button
-                            onClick={(e) => { validation(e, Productname, Productprice, Productdiscription, Productoffer, Productcategory) }}
-                            type="submit"
-                            className='btn btn-success w-100 my-4'
-                            fullWidth
-                            variant="contained"
-                            sx={{ mt: 3, mb: 2 }}
-                        >
-                            Add product
-                        </button>
-
-                    </Box>
-                </Box>
-            </Container>
-        </ThemeProvider>
-    );
+  };
+  return (
+    <ThemeProvider theme={theme}>
+      <Container component="main" maxWidth="xs">
+        <CssBaseline />
+        <Box
+          sx={{
+            marginTop: 2,
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+        >
+          <Typography
+            component="h1"
+            variant="h5"
+            className="text-center text-danger"
+          >
+            Add Product
+          </Typography>
+          <Box component="form" noValidate sx={{ mt: 1 }}>
+              <label htmlFor="price">Product Price</label>
+            <input
+            className="form-control size-lg mb-4"
+            margin="normal"
+            required
+            fullWidth
+            label="Product price"
+            id="price"
+            defaultValue={coloumn.price}
+            name="price"
+            type="number"
+            />
+              <label className="mt-4" htmlFor="price">Product Offer</label>
+            <input
+            className="form-control size-lg mb-4"
+              margin="normal"
+              required
+              fullWidth
+              label="Product offer"
+              defaultValue={coloumn.offer}
+              name="offer"
+              type="text"
+              id="offer"
+            />
+            <button
+              onClick={(e) => handleUpdate(e)}
+              type="submit"
+              className="btn btn-success w-100 my-4"
+              fullWidth
+              variant="contained"
+              sx={{ mt: 3, mb: 2 }}
+            >
+              Update Product
+            </button>
+          </Box>
+        </Box>
+      </Container>
+    </ThemeProvider>
+  );
 }

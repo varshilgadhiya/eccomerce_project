@@ -48,7 +48,15 @@ export default function Producttable() {
             alert("error")
         }
     })
+
+
   };
+
+  const handleupdate = (e,id) =>{
+      navigate(`/upadate-product/${id}`)
+  }
+
+    
   return (
     <>
       <Typography variant="h4" className="text-center state my-4">
@@ -91,7 +99,7 @@ export default function Producttable() {
                 <TableCell align="center">{data.offer}</TableCell>
                 <TableCell align="center">{data.category}</TableCell>
                 <TableCell align="center">
-                  <button className="btn btn-warning">
+                  <button className="btn btn-warning" onClick={(e)=> handleupdate(e,data._id)}>
                     <i class="fa fa-pencil" aria-hidden="true"></i>
                   </button>
                 </TableCell>

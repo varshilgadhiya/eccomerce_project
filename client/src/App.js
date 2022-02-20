@@ -11,7 +11,6 @@ import AlluserTable from './component/admin/AlluserTable';
 import Addproduct from "./component/product/Addproduct"
 import Producttable from './component/product/Productable';
 import Upadateproduct from "./component/product/Upadateproduct"
-import Shopping from './component/user/Shopping';
 
 function App() {
   return (
@@ -22,11 +21,10 @@ function App() {
           <Route exact path="/" element={<Loginform />} />
           <Route exact path="/logout" element={<Logout />} />
           <Route exact path="/profile" element={<Profile />} />
-          <Route exact path="/shopping" element={<Shopping />} />
           <Route exact path="/all-user" element={<AlluserTable />} />
           <Route exact path="/all-product" element={<Producttable />} />
           <Route exact path="/add-product" element={<Addproduct />} />
-          <Route exact path="/upadate-product" element={<Upadateproduct />} />
+          <Route exact path="/upadate-product/:id" element={<Upadateproduct />} />
           <Route exact path="/logout" element={<Logout />} />
           <Route exact path="/registration" element={<Registrationform />} />
         </Routes>
