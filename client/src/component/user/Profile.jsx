@@ -6,6 +6,7 @@ import MailIcon from '@mui/icons-material/Mail';
 import PhoneIcon from '@mui/icons-material/Phone';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { Grid } from '@mui/material';
 
 
 const Profile = () => {
@@ -26,9 +27,11 @@ const Profile = () => {
     }, []);
     return (
         <div className='background' >
-            <div className="left" style={{ background: "transprent" }}>
-                <Card className='p-4' style={{ width: '350px', marginLeft: "500px", marginTop: "5px", height: "500px" }}  >
-                    <Card.Img variant="top" height={"200px"} src={user.pic} />
+           <Grid container spacing={2}>
+               <Grid item sm={4} xs={0}></Grid>
+               <Grid item sm={4} xs={12}>
+               <Card className='p-4 profilecard' >
+                    <Card.Img variant="top" height={"300px"} src={user.pic} />
                     <Card.Body>
                         <h2 className='text-primary'>Profile<hr /></h2>
                     </Card.Body>
@@ -50,8 +53,13 @@ const Profile = () => {
                     </button>
 
                 </Card>
+               </Grid>
+               <Grid item sm={4} xs={0}></Grid>
+
+           </Grid>
+                
             </div>
-        </div>
+      
     )
 }
 
