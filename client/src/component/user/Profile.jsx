@@ -12,7 +12,7 @@ const Profile = () => {
     const navigate = useNavigate()
     const [user, setUser] = useState([]);
     useEffect(() => {
-        axios.get(`http://localhost:5000/user/${localStorage.getItem("user")}`,{headers : `Bearer ${localStorage.getItem("token")}`})
+        axios.get(`http://localhost:5000/user/${localStorage.getItem("user")}`,{headers :{ "Authorization":`Bearer ${localStorage.getItem("token")}`}})
             .then((value) => {
                 setUser(value.data)
                 console.log(value.data)
