@@ -36,8 +36,17 @@ export default function Producttable() {
       });
   }, []);
   const handledelete = (e,id) => {
-    axios.delete(`http://localhost:5000/product/delete/${id}`).then((res)=>{
-        navigate("/all-product")
+      e.preventDefault()
+    axios.delete(`http://localhost:5000/product/delete/${id}`)
+    .then((res)=>{
+        if(res.data.success === "product has been delete"){
+            console.log(res)
+            alert("delete successfully")
+            navigate("/all-product")
+        }
+        else if(res.data.error){
+            alert("error")
+        }
     })
   };
   return (

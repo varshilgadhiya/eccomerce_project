@@ -12,16 +12,18 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { useEffect } from "react"
 
 
-const settings = ['Profile', 'Cart', 'Logout'];
-const settingsroute = ['/profile', '/cart', '/logout'];
+const settings = ['Profile', 'Cart', 'Shopping', 'Logout'];
+const settingsroute = ['/profile', '/cart', "/shopping", '/logout'];
 const admin = ['Profile', 'Add Product', 'All Product', 'All User', 'All Orders', 'Logout'];
 const adminroute = ['/profile', '/add-product', '/all-product', '/all-user', '/all-orders', '/logout'];
 
 const ResponsiveAppBar = () => {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
+    const [user, setUser] = React.useState([]);
 
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
@@ -37,6 +39,14 @@ const ResponsiveAppBar = () => {
     const handleCloseUserMenu = () => {
         setAnchorElUser(null);
     };
+    const id = localStorage.getItem("user")
+    const token = localStorage.getItem("token")
+
+    useEffect(() => {
+        axios.get(`http://localhost:5000/user/${id}`,{ headers: { "Authorization": `Bearer ${token}` } })
+            .then((value) => (setUser(value.data)))
+            console.log(user);
+    }, []);
 
     return (
         <AppBar position="static">
@@ -86,7 +96,7 @@ const ResponsiveAppBar = () => {
                     <Box sx={{ flexGrow: 0 }}>
                         <Tooltip title="Open settings">
                             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                                <Avatar alt="Remy Sharp" src={user.pic} />
                             </IconButton>
                         </Tooltip>
                         <Menu
@@ -107,7 +117,7 @@ const ResponsiveAppBar = () => {
                         >
                             {
                                 localStorage.getItem("role") === "admin" ?
-                                    admin.map((setting,index) => (
+                                    admin.map((setting, index) => (
                                         <Link className='text-secondary text-decoration-none' to={`${adminroute[index]}`}>
                                             <MenuItem key={setting} onClick={handleCloseUserMenu}>
                                                 <Typography textAlign="center">{setting}</Typography>
@@ -115,7 +125,7 @@ const ResponsiveAppBar = () => {
                                         </Link>
                                     ))
                                     :
-                                    settings.map((setting,index) => (
+                                    settings.map((setting, index) => (
                                         <Link className='text-secondary text-decoration-none' to={`${settingsroute[index]}`}>
                                             <MenuItem key={setting} onClick={handleCloseUserMenu}>
                                                 <Typography textAlign="center">{setting}</Typography>

@@ -7,12 +7,13 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import axios from 'axios'
+import { useNavigate } from 'react-router-dom';
 
 
 const theme = createTheme();
 
 export default function Addproduct() {
-
+    const navigate = useNavigate()
     const [Productname, setProductname] = React.useState('')
     const [Productprice, setProductprice] = React.useState('')
     const [Productdiscription, setProductdiscription] = React.useState('')
@@ -26,21 +27,21 @@ export default function Addproduct() {
             alert("field can not empty")
         }
         else {
-            
-          const data = {
-              productname:Productname,
-              productprice:Productprice,
-              productdiscription:Productdiscription,
-              productoffer:Productoffer,
-              productcategory:Productcategory,
-          }
 
-
-            alert("added successfully")
-
-
+            const data = {
+                productname: Productname,
+                productprice: Productprice,
+                productdiscription: Productdiscription,
+                productoffer: Productoffer,
+                productcategory: Productcategory,
+            }
             axios.post("http://localhost:5000/product/create", data)
-                .then((res) => console.log(res))
+                .then((res) => {
+                    if (res.data.success) {
+                        alert("product added")
+                        navigate("/all-product")
+                    }
+                })
                 .catch((err) => console.log(err));
 
         }

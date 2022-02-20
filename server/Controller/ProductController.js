@@ -43,12 +43,13 @@ exports.updateproduct = async (req, res) => {
 
 exports.deleteproduct = async (req, res) => {
   const id= req.params.id
-  console.log(id);
-  const deleteproduct = await product.findOneAndDelete({ _id: id })
+  const deleteproduct = await product.findByIdAndDelete(id).lean()
   if (deleteproduct) {
     res.json({ success: "product has been delete" })
   }
-
+  else{
+    res.json({ error: "product has not delete" })
+}
 }
 
 
