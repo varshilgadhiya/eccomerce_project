@@ -25,7 +25,7 @@ const Profile = () => {
             })
     }, []);
     return (
-        <div className='row' >
+        <div className='background' >
             <div className="left" style={{ background: "transprent" }}>
                 <Card className='p-4' style={{ width: '350px', marginLeft: "500px", marginTop: "5px", height: "500px" }}  >
                     <Card.Img variant="top" height={"200px"} src={user.pic} />
