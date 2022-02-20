@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -8,6 +8,8 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import { Typography } from '@material-ui/core';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const useStyles = makeStyles({
     table: {
@@ -16,51 +18,55 @@ const useStyles = makeStyles({
     },
 });
 
-export default function Producttable({ data }) {
+export default function Producttable() {
     const classes = useStyles();
-    
-    const [Product, setProduct] = useState(second)
+    const navigate = useNavigate()
+    const [Product, setProduct] = useState([])
     
     useEffect(() => {
-        axios.get(`http://localhost:5000//${localStorage.getItem("Producttable")}`, { headers: `Bearer ${localStorage.getItem("token")}` })
+        axios.get(`http://localhost:5000/product/`, { headers: { "Authorization": `Bearer ${localStorage.getItem("token")}` } })
             .then((value) => {
                 setProduct(value.data)
                 console.log(value.data)
-
+                if (value.data.message || value.data.message === "Access Denied") {
+                    navigate("/")
+                }
+            })  
             }, []);
-    return (
-        <>
-            <Typography variant="h4" className="text-center state my-4">State Wise Data</Typography>
-            <TableContainer component={Paper}>
-                <Table className={classes.table} aria-label="simple table">
-                    <TableHead>
-                        <TableRow>
-
-                            <TableCell className="head" align="center">Name</TableCell>
-                            <TableCell className="head text-primary" align="center">Price</TableCell>
-                            <TableCell className="head text-danger" align="center">discription</TableCell>
-                            <TableCell className="head text-success" align="center">offer</TableCell>
-                            <TableCell className="head state" align="center">category</TableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {
-                    data.map((Product) =>
-                                <TableRow>
-                                    <TableCell align="center">{Product.name}</TableCell>
-                                    <TableCell align="center">{Product.price}</TableCell>
-                                    <TableCell align="center">{Product.discription}</TableCell>
-                                    <TableCell align="center">{Product.offer}</TableCell>
-                                    <TableCell align="center">{Product.category}</TableCell>
-                                    
-
-                                    
-                                </TableRow>
-                            )
-                        }
-                    </TableBody>
-                </Table>
-            </TableContainer>
-        </>
-    );
-})}
+        return (
+            <>
+                <Typography variant="h4" className="text-center state my-4">All Products</Typography>
+                <TableContainer component={Paper}>
+                    <Table className={classes.table} aria-label="simple table">
+                        <TableHead>
+                            <TableRow>
+                                <TableCell className="head fw-bold" align="center">Product Id</TableCell>
+                                <TableCell className="head fw-bold" align="center">Product Name</TableCell>
+                                <TableCell className="head fw-bold" align="center">Product Price</TableCell>
+                                <TableCell className="head fw-bold" align="center">Product Discription</TableCell>
+                                <TableCell className="head fw-bold" align="center">Product Offer</TableCell>
+                                <TableCell className="head fw-bold" align="center">Category</TableCell>
+                                <TableCell className="head fw-bold" colSpan={2} align="center">Actions</TableCell>
+                            </TableRow>
+                        </TableHead>
+                        <TableBody>
+                            {
+                                Product.map((data,index) =>
+                                    <TableRow>
+                                        <TableCell align="center">{index + 1}</TableCell>
+                                        <TableCell align="center">{data.name}</TableCell>
+                                        <TableCell align="center">{data.price}</TableCell>
+                                        <TableCell align="center">{data.discription}</TableCell>
+                                        <TableCell align="center">{data.offer}</TableCell>
+                                        <TableCell align="center">{data.category}</TableCell>
+                                        <TableCell align="center"><button className="btn btn-warning"><i class="fa fa-pencil" aria-hidden="true"></i></button></TableCell>
+                                        <TableCell align="center"><button className="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></button></TableCell>
+                                    </TableRow>
+                                )
+                            }
+                        </TableBody>
+                    </Table>
+                </TableContainer>
+            </>
+        );
+}

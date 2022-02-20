@@ -12,7 +12,7 @@ const registrationRoutes = require ("./Routes/UserRoutes")
 const productRoutes = require("./Routes/ProductRoutes")
 
 app.use ("/",registrationRoutes) 
-app.use("/",productRoutes)            
+app.use("/product",productRoutes)            
 
    
 

@@ -9,10 +9,10 @@ const productSchema= mongoose.Schema({
         type:Number
     },
     discription: {
-        type:Number
+        type:String
     },
      offer:{
-        type:String
+        type:Number
     },
     category :{
         type:String

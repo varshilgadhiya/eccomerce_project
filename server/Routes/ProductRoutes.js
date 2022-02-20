@@ -5,9 +5,9 @@ const upload = require('../middleware/multer')
 const router = express.Router()
 
 router.get('/',allproduct)
-router.post('/create/product',addproduct)
-router.put('/update/product',updateproduct)
-router.delete('/delete/product',deleteproduct)
+router.post('/create',addproduct)
+router.put('/update',updateproduct)
+router.delete('/delete',deleteproduct)
 
 
 module.exports = router

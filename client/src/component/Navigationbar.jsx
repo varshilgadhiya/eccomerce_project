@@ -15,7 +15,9 @@ import axios from 'axios';
 
 
 const settings = ['Profile', 'Cart', 'Logout'];
+const settingsroute = ['/profile', '/cart', '/logout'];
 const admin = ['Profile', 'Add Product', 'All Product', 'All User', 'All Orders', 'Logout'];
+const adminroute = ['/profile', '/add-product', '/all-product', '/all-user', '/all-orders', '/logout'];
 
 const ResponsiveAppBar = () => {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -105,16 +107,16 @@ const ResponsiveAppBar = () => {
                         >
                             {
                                 localStorage.getItem("role") === "admin" ?
-                                    admin.map((setting) => (
-                                        <Link className='text-secondary text-decoration-none' to={`/${setting}`}>
+                                    admin.map((setting,index) => (
+                                        <Link className='text-secondary text-decoration-none' to={`${adminroute[index]}`}>
                                             <MenuItem key={setting} onClick={handleCloseUserMenu}>
                                                 <Typography textAlign="center">{setting}</Typography>
                                             </MenuItem>
                                         </Link>
                                     ))
                                     :
-                                    settings.map((setting) => (
-                                        <Link className='text-secondary text-decoration-none' to={`/${setting}`}>
+                                    settings.map((setting,index) => (
+                                        <Link className='text-secondary text-decoration-none' to={`${settingsroute[index]}`}>
                                             <MenuItem key={setting} onClick={handleCloseUserMenu}>
                                                 <Typography textAlign="center">{setting}</Typography>
                                             </MenuItem>

@@ -7,7 +7,8 @@ import Loginform from './component/Loginform'
 import Navigationbar from './component/Navigationbar';
 import Logout from './component/Logout';
 import Profile from './component/user/Profile';
-import AlluserTable from './component/user/AlluserTable';
+import AlluserTable from './component/admin/AlluserTable';
+import Producttable from './component/product/Productable';
 
 function App() {
   return (
@@ -19,7 +20,7 @@ function App() {
           <Route exact path="/logout" element={<Logout />} />
           <Route exact path="/profile" element={<Profile />} />
           <Route exact path="/all-user" element={<AlluserTable />} />
-          {/* <Route exact path="/all-products" element={</>} /> */}
+          <Route exact path="/all-product" element={<Producttable/>} />
           <Route exact path="/logout" element={<Logout />} />
           <Route exact path="/registration" element={<Registrationform />} />
         </Routes>

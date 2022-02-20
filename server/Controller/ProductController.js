@@ -1,7 +1,4 @@
-const { uploadsingle } = require("../middleware/cloudinary");
-const { signAccessToken } = require("../middleware/jwt");
 const product = require("../models/Product");
-const fs = require("fs")
 
 exports.allproduct = async (req, res) => {
     try {
@@ -21,18 +18,17 @@ exports.addproduct = async (req, res) => {
     
         const createproduct = await product.create({
           name:productname,
-          prize: productprize,
+          price: productprize,
           discription: productdiscription,
           offer:productoffer,
           category:productcategory
         });
         await createproduct.save();
-    
         if (createproduct) {
-          res.json({ success: "course has been create", createproduct });
+          res.json({ success: "product has been create" });
         }
       } catch {
-        res.status(400).json({ error: "create course faild..." });
+        res.status(400).json({ error: "create product faild..." });
       }
     };
 
