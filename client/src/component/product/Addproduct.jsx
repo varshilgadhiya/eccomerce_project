@@ -37,7 +37,7 @@ export default function Addproduct() {
             alert("added successfully")
 
 
-            axios.post("http://localhost:5000/create/", data)
+            axios.post("http://localhost:3000/", data)
                 .then((res) => console.log(res))
                 .catch((err) => console.log(err));
 
@@ -56,7 +56,7 @@ export default function Addproduct() {
                     }}
                 >
                     <Typography component="h1" variant="h5" className='text-center text-danger'>
-                        Registration form
+                        Add Product
                     </Typography>
                     <Box component="form" noValidate sx={{ mt: 1 }}>
                         <TextField
