@@ -20,6 +20,7 @@ const useStyles = makeStyles({
 
 export default function AlluserTable() {
     const classes = useStyles();
+
     const [Alluser, setAlluser] = useState([])
     const navigate = useNavigate()
     useEffect(() => {
@@ -32,6 +33,11 @@ export default function AlluserTable() {
             }
         })
     }, []);
+
+    
+
+
+
     return (
         <>
             <Typography variant="h4" className="text-center state my-4">All Users</Typography>
@@ -60,7 +66,7 @@ export default function AlluserTable() {
                                     <TableCell align="center">{data.phone}</TableCell>
                                     <TableCell align="center">{data.role}</TableCell>
                                     <TableCell align="center">{data.pass}</TableCell>
-                                    <TableCell align="center"><button className="btn btn-info"><i class="fa fa-eye" aria-hidden="true"></i></button></TableCell>
+                                    <TableCell align="center"><button className="btn btn-info"><i class="fa fa-eye"aria-hidden="true"></i></button></TableCell>
                                 </TableRow>
                             ))
                         }
