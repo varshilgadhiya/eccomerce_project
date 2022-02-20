@@ -29,7 +29,7 @@ export default function Addproduct() {
             var data = new FormData
             data.append("name", name)
             data.append("price", price)
-            data.append("discrition", discrition)
+            data.append("discrition", discription)
             data.append("offer", offer)
             data.append("category", category)
 
