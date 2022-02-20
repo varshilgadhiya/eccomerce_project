@@ -13,31 +13,31 @@ const theme = createTheme();
 
 export default function Addproduct() {
 
-    const [name, setname] = React.useState('')
-    const [price, setprice] = React.useState('')
-    const [discription, setdiscription] = React.useState('')
-    const [offer, setoffer] = React.useState([])
-    const [category, setcategory] = React.useState('')
+    const [Productname, setProductname] = React.useState('')
+    const [Productprice, setProductprice] = React.useState('')
+    const [Productdiscription, setProductdiscription] = React.useState('')
+    const [Productoffer, setProductoffer] = React.useState('')
+    const [Productcategory, setProductcategory] = React.useState('')
 
 
-    const validation = (e, name, price, discription, offer, category) => {
+    const validation = (e, Productname, Productprice, Productdiscription, Productoffer, Productcategory) => {
         e.preventDefault()
-        if (name == "" || price == "" || discription == "" || offer == "" || category == "") {
+        if (Productname == "" || Productprice == "" || Productdiscription == "" || Productoffer == "" || Productcategory == "") {
             alert("field can not empty")
         }
         else {
             var data = new FormData
-            data.append("name", name)
-            data.append("price", price)
-            data.append("discrition", discription)
-            data.append("offer", offer)
-            data.append("category", category)
+            data.append("Productname", Productname)
+            data.append("Productprice", Productprice)
+            data.append("Productdiscrition", Productdiscription)
+            data.append("Productoffer", Productoffer)
+            data.append("Productcategory", Productcategory)
 
 
             alert("added successfully")
 
 
-            axios.post("http://localhost:3000/", data)
+            axios.post("http://localhost:5000/create", data)
                 .then((res) => console.log(res))
                 .catch((err) => console.log(err));
 
@@ -63,21 +63,20 @@ export default function Addproduct() {
                             margin="normal"
                             required
                             fullWidth
-                            id="name"
+                            id="Productname"
                             label="Full Name"
                             name="Full Name"
-                            onChange={(e) => setname(e.target.value)}
-
+                            onChange={(e) => setProductname(e.target.value)}
                             autoFocus
                         />
                         <TextField
                             margin="normal"
                             required
                             fullWidth
-                            id="price"
-                            onChange={(e) => setprice(e.target.value)}
+                            id="Productprice"
+                            onChange={(e) => setProductprice(e.target.value)}
                             name="price"
-                            type="number"
+                            type="string"
                             autoFocus
                         />
                         <TextField
@@ -85,7 +84,7 @@ export default function Addproduct() {
                             required
                             fullWidth
                             id="discription"
-                            onChange={(e) => setdiscription(e.target.value)}
+                            onChange={(e) => setProductdiscription(e.target.value)}
                             name="discription"
                             type="string"
                             autoFocus
@@ -107,7 +106,7 @@ export default function Addproduct() {
                             margin="normal"
                             required
                             fullWidth
-                            onChange={(e) => setoffer(e.target.value)}
+                            onChange={(e) => setProductoffer(e.target.value)}
                             name="offer"
                             type="number"
                             id="offer"
@@ -117,7 +116,7 @@ export default function Addproduct() {
                             margin="normal"
                             required
                             fullWidth
-                            onChange={(e) => setcategory(e.target.value)}
+                            onChange={(e) => setProductcategory(e.target.value)}
                             name="category"
 
                             type="string"
@@ -125,7 +124,7 @@ export default function Addproduct() {
 
                         />
                         <button
-                            onClick={(e) => { validation(e, name, price, discription, offer, category) }}
+                            onClick={(e) => { validation(e, Productname, Productprice, Productdiscription, Productoffer, Productcategory) }}
                             type="submit"
                             className='btn btn-success w-100 my-4'
                             fullWidth
