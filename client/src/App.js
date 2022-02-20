@@ -11,41 +11,18 @@ import Profile from './component/user/Profile';
 function App() {
   return (
     <>
-      {
-        localStorage.getItem("user") ?
-          //auth route
-          <>
-            {
-              localStorage.getItem("role") === "admin" ?
-                //admin route
-                <BrowserRouter>
-                  <Navigationbar />
-                  <Routes>
-                    <Route exact path="/logout" element={<Logout />} />
-                    <Route exact path="/profile" element={<Profile />} />
+      <BrowserRouter>
+        <Navigationbar />
+        <Routes>
+          <Route exact path="/" element={<Loginform />} />
+          <Route exact path="/logout" element={<Logout />} />
+          <Route exact path="/profile" element={<Profile />} />
+          {/* <Route exact path="/profile" element={<Profile />} /> */}
+          <Route exact path="/logout" element={<Logout />} />
+          <Route exact path="/registration" element={<Registrationform />} />
+        </Routes>
+      </BrowserRouter>
 
-                  </Routes>
-                </BrowserRouter>
-                :
-                //user route
-                <BrowserRouter>
-                  <Navigationbar />
-                  <Routes>
-                    <Route exact path="/profile" element={<Profile />} />
-                    <Route exact path="/logout" element={<Logout />} />
-                  </Routes>
-                </BrowserRouter>
-            }
-          </>
-          :
-          //non-auth route
-          <BrowserRouter>
-            <Routes>
-              <Route exact path="/" element={<Loginform />} />
-              <Route exact path="/registration" element={<Registrationform />} />
-            </Routes>
-          </BrowserRouter>
-      }
     </>
   );
 }

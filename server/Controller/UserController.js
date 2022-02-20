@@ -11,6 +11,15 @@ exports.allUser = async (req, res) => {
         res.status(400).json({ error: 'get user faild' })
     }
 }
+exports.oneUser = async (req, res) => {
+    try {
+        const id = req.params.id
+        const oneuser = await User.findById(id).lean();
+        res.send(oneuser);
+    } catch {
+        res.status(400).json({ error: 'get user faild' })
+    }
+}
 
 exports.addUser = async (req, res) => {
     // try {

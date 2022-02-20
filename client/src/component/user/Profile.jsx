@@ -1,29 +1,46 @@
 import { ListGroup, ListGroupItem, Card } from 'react-bootstrap'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { height, style } from '@mui/system'
 import EditIcon from '@mui/icons-material/Edit';
 import MailIcon from '@mui/icons-material/Mail';
 import PhoneIcon from '@mui/icons-material/Phone';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 
 const Profile = () => {
+    const navigate = useNavigate()
+    const [user, setUser] = useState([]);
+    useEffect(() => {
+        axios.get(`http://localhost:5000/user/${localStorage.getItem("user")}`,{headers : `Bearer ${localStorage.getItem("token")}`})
+            .then((value) => {
+                setUser(value.data)
+                console.log(value.data)
+                if (value.data.message || value.data.message === "Access Denied") {
+                    navigate("/")
+                }
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+    }, []);
     return (
         <div className='row' >
             <div className="left" style={{ background: "transprent" }}>
-                <Card style={{ width: '350px', marginLeft: "500px", marginTop: "5px", height: "500px" }}  >
-                    <Card.Img variant="top" src="https://media.istockphoto.com/photos/renewable-energy-and-sustainable-development-picture-id1186330948" />
+                <Card className='p-4' style={{ width: '350px', marginLeft: "500px", marginTop: "5px", height: "500px" }}  >
+                    <Card.Img variant="top" height={"200px"} src={user.pic} />
                     <Card.Body>
                         <h2 className='text-primary'>Profile<hr /></h2>
                     </Card.Body>
-                    <div className='right' style={{marginLeft:"10pxsw3fd"}} >
-                    <h4>Profile Detail</h4>
-                    <h5><MailIcon /> varshilgadhiya5784@gmail.com</h5>
-                    <h5><PhoneIcon /> 9998650444</h5>
+                    <div className='right' style={{ marginLeft: "10px" }} >
+                        <h4>Profile Detail</h4>
+                        <h5><MailIcon />{user.email}</h5>
+                        <h5><PhoneIcon />{user.phone}</h5>
                     </div>
                     <button
                         onChange={(e) => (e.target.value)}
                         type="Edit Profile"
-                        className='btn btn-primary w-50 my-5'
+                        className='btn btn-primary w-50'
                         variant="contained"
                         sx={{ mt: 1, mb: 1 }}
                         style={{ marginLeft: "60px" }}
@@ -32,7 +49,9 @@ const Profile = () => {
                         <EditIcon /> Edit Profile
                     </button>
 
-                </Card></div></div>
+                </Card>
+            </div>
+        </div>
     )
 }
 

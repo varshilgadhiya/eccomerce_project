@@ -15,6 +15,7 @@ import { Link } from 'react-router-dom';
 
 
 const settings = ['Profile', 'Cart', 'Logout'];
+const admin = ['Profile', 'Add Product', 'All Product','All User','All Orders', 'Logout'];
 
 const ResponsiveAppBar = () => {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -126,13 +127,24 @@ const ResponsiveAppBar = () => {
                             open={Boolean(anchorElUser)}
                             onClose={handleCloseUserMenu}
                         >
-                            {settings.map((setting) => (
-                                <Link className='text-secondary text-decoration-none' to={`/${setting}`}>
-                                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                                    <Typography textAlign="center">{setting}</Typography>
-                                </MenuItem>
-                                </Link>
-                            ))}
+                            {
+                                localStorage.getItem("role")==="admin"?
+                                admin.map((setting) => (
+                                    <Link className='text-secondary text-decoration-none' to={`/${setting}`}>
+                                        <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                                            <Typography textAlign="center">{setting}</Typography>
+                                        </MenuItem>
+                                    </Link>
+                                ))
+                                :
+                                settings.map((setting) => (
+                                    <Link className='text-secondary text-decoration-none' to={`/${setting}`}>
+                                        <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                                            <Typography textAlign="center">{setting}</Typography>
+                                        </MenuItem>
+                                    </Link>
+                                ))
+                            }
                         </Menu>
                     </Box>
                 </Toolbar>
