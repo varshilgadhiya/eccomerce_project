@@ -19,6 +19,7 @@ export default function Addproduct() {
     const [Productdiscription, setProductdiscription] = React.useState('')
     const [Productoffer, setProductoffer] = React.useState()
     const [Productcategory, setProductcategory] = React.useState('')
+    const [Productpic, setProductpic] = React.useState([])
 
 
     const validation = (e, Productname, Productprice, Productdiscription, Productoffer, Productcategory) => {
@@ -28,13 +29,16 @@ export default function Addproduct() {
         }
         else {
 
-            const data = {
-                productname: Productname,
-                productprice: Productprice,
-                productdiscription: Productdiscription,
-                productoffer: Productoffer,
-                productcategory: Productcategory,
+            const data = new FormData()
+            data.append("productname", Productname)
+            data.append("productprice", Productprice)
+            data.append("productdiscription", Productdiscription)
+            data.append("productoffer", Productoffer)
+            data.append("productcategory", Productcategory)
+            for (let i = 0; i < Productpic.length; i++) {
+                data.append("productpic", Productpic[i])
             }
+
             axios.post("http://localhost:5000/product/create", data)
                 .then((res) => {
                     if (res.data.success) {
@@ -116,6 +120,19 @@ export default function Addproduct() {
 
                             type="string"
                             id="category"
+
+                        />
+                        <input
+                            margin="normal"
+                            required
+                            label="Product category"
+                            fullWidth
+                            onChange={(e) => setProductpic(e.target.files)}
+                            name="category"
+                            className='form-control'
+                            type="file"
+                            id="category"
+                            multiple
 
                         />
                         <button

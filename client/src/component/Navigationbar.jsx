@@ -43,9 +43,9 @@ const ResponsiveAppBar = () => {
     const token = localStorage.getItem("token")
 
     useEffect(() => {
-        axios.get(`http://localhost:5000/user/${id}`,{ headers: { "Authorization": `Bearer ${token}` } })
+        axios.get(`http://localhost:5000/user/${id}`, { headers: { "Authorization": `Bearer ${token}` } })
             .then((value) => (setUser(value.data)))
-            console.log(user);
+        console.log(user);
     }, []);
 
     return (
@@ -94,11 +94,15 @@ const ResponsiveAppBar = () => {
                     </Box>
 
                     <Box sx={{ flexGrow: 0 }}>
-                        <Tooltip title="Open settings">
-                            <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                                <Avatar alt="Remy Sharp" src={user.pic} />
-                            </IconButton>
-                        </Tooltip>
+                        {
+                            localStorage.getItem("token") ?
+                                <Tooltip title="Open settings">
+                                    <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                                        <Avatar alt="Remy Sharp" src={user.pic} />
+                                    </IconButton>
+                                </Tooltip> :
+                                null
+                        }
                         <Menu
                             sx={{ mt: '45px' }}
                             id="menu-appbar"
