@@ -5,6 +5,7 @@ import ErrorOutlineSharpIcon from '@material-ui/icons/ErrorOutlineSharp';
 import NotInterestedSharpIcon from '@material-ui/icons/NotInterestedSharp';
 
 const Shopping = ({data}) => {
+    
     return (
         <div className="my-4">
             <h4 className="text-center state">{data.shopping}</h4>
