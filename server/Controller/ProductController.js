@@ -1,4 +1,5 @@
 const product = require("../models/Product");
+const {uploadsingle} = require('../middleware/cloudinary')
 
 exports.allproduct = async (req, res) => {
   try {
@@ -12,24 +13,30 @@ exports.allproduct = async (req, res) => {
 
 
 exports.addproduct = async (req, res) => {
-  try {
     console.log(req.body);
+    console.log(req.files);
     const { productname, productprice, productdiscription, productoffer, productcategory } = req.body;
-
+    const productpic = req.files
+    var path = []
+    for (let i = 0; i < productpic.length; i++) {
+      var img = productpic[i].path
+      var imglink = await uploadsingle(img)
+      path.push(imglink)
+      console.log(path)
+    }
     const createproduct = await product.create({
       name: productname,
       price: productprice,
       discription: productdiscription,
       offer: productoffer,
-      category: productcategory
+      category: productcategory,
+      pic: path
     });
     await createproduct.save();
     if (createproduct) {
       res.json({ success: "product has been create" });
     }
-  } catch {
-    res.status(400).json({ error: "create product faild..." });
-  }
+  
 };
 
 
@@ -42,14 +49,14 @@ exports.updateproduct = async (req, res) => {
 }
 
 exports.deleteproduct = async (req, res) => {
-  const id= req.params.id
+  const id = req.params.id
   const deleteproduct = await product.findByIdAndDelete(id).lean()
   if (deleteproduct) {
     res.json({ success: "product has been delete" })
   }
-  else{
+  else {
     res.json({ error: "product has not delete" })
-}
+  }
 }
 
 
