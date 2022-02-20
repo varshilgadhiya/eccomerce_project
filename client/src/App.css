@@ -11,3 +11,6 @@
   margin-left: 4% !important;
   margin-top: 100px !important;
 }
+.p-card{
+  box-shadow: 1px 1px 50px rgba(0, 0, 0, 0.3) !important;
+}
