@@ -22,6 +22,17 @@ exports.oneproduct = async (req, res) => {
 };
 
 
+exports.oneproduct = async (req, res) => {
+  try {
+    var id = req.params.id;
+    const myproduct = await product.findById(id).lean();
+    res.send(myproduct);
+  } catch {
+    res.status(400).json({ error: "get course faild" });
+  }
+};
+
+
 
 exports.addproduct = async (req, res) => {
     console.log(req.body);

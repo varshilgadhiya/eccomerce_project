@@ -9,7 +9,7 @@ app.use(cors())
 app.use(express.json())
 
 const registrationRoutes = require ("./Routes/UserRoutes")
-const productRoutes = require("./Routes/ProductRoutes")
+const productRoutes = require("./Routes/ProductRoutes")   
 
 app.use ("/",registrationRoutes) 
 app.use("/product",productRoutes)            

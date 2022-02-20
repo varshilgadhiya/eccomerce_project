@@ -1,23 +1,23 @@
-import * as React from "react";
-import Button from "@mui/material/Button";
-import CssBaseline from "@mui/material/CssBaseline";
-import TextField from "@mui/material/TextField";
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
-import Container from "@mui/material/Container";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
-import axios from "axios";
-import { useState, useEffect } from "react";
-import { Navigate, useNavigate, useParams } from "react-router-dom";
+import * as React from 'react';
+import Button from '@mui/material/Button';
+import CssBaseline from '@mui/material/CssBaseline';
+import TextField from '@mui/material/TextField';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Container from '@mui/material/Container';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import axios from 'axios'
+import { useNavigate, useParams } from 'react-router-dom';
+
 
 const theme = createTheme();
 
 export default function Addproduct() {
-  const [coloumn, setcoloumn] = useState([]);
+  const [coloumn, setcoloumn] = React.useState([]);
   const { id } = useParams();
   const navigate = useNavigate()
 
-  useEffect(() => {
+  React.useEffect(() => {
     axios.get(`http://localhost:5000/product/one/${id}`)
       .then((res) => {
         console.log(res.data);

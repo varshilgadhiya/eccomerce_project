@@ -6,7 +6,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import axios from 'axios'
+import axios from 'axios'                 
 import { useNavigate } from 'react-router-dom';
 
 
@@ -28,7 +28,6 @@ export default function Addproduct() {
             alert("field can not empty")
         }
         else {
-
             const data = new FormData()
             data.append("productname", Productname)
             data.append("productprice", Productprice)

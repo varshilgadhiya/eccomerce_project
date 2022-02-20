@@ -3,7 +3,8 @@ const { allproduct, addproduct, updateproduct, deleteproduct, oneproduct } = req
 const router = express.Router()
 const upload = require("../middleware/multer")
 
-router.get('/',allproduct)   
+router.get('/',allproduct)
+router.get('/one/:id',oneproduct)
 router.post('/create',addproduct)
 router.post('/update/:id',updateproduct)
 router.delete('/delete/:id',deleteproduct)
