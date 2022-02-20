@@ -26,20 +26,18 @@ export default function Addproduct() {
             alert("field can not empty")
         }
         else {
-            
-          const data = {
-              productname:Productname,
-              productprice:Productprice,
-              productdiscription:Productdiscription,
-              productoffer:Productoffer,
-              productcategory:Productcategory,
-          }
+            var data = new FormData
+            data.append("Productname", Productname)
+            data.append("Productprice", Productprice)
+            data.append("Productdiscrition", Productdiscription)
+            data.append("Productoffer", Productoffer)
+            data.append("Productcategory", Productcategory)
 
 
             alert("added successfully")
 
 
-            axios.post("http://localhost:5000/product/create", data)
+            axios.post("http://localhost:5000/Update", data)
                 .then((res) => console.log(res))
                 .catch((err) => console.log(err));
 
