@@ -60,6 +60,7 @@ const ResponsiveAppBar = () => {
                 <Toolbar disableGutters>
                     <Typography
                         variant="h6"
+                        className='text-dark'
                         noWrap
                         component="div"
                         sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
@@ -91,6 +92,7 @@ const ResponsiveAppBar = () => {
                     <Typography
                         variant="h6"
                         noWrap
+                        className='text-dark'
                         component="div"
                         sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}
                     >
@@ -139,7 +141,7 @@ const ResponsiveAppBar = () => {
                                         <Link className='text-secondary text-decoration-none' to={`${settingsroute[index]}`}>
                                             <MenuItem key={setting} onClick={handleCloseUserMenu}>
                                                 {setting === "Cart" ?
-                                                    <Typography textAlign="center">{setting} <span style={{borderRadius:"50%"}} className="badge bg-danger text-white">{cart}</span></Typography>
+                                                    <Typography textAlign="center">{setting} <span style={{ borderRadius: "50%" }} className="badge bg-danger text-white">{cart}</span></Typography>
                                                     :
                                                     <Typography textAlign="center">{setting}</Typography>
                                                 }

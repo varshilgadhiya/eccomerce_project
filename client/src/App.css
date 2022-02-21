@@ -1,13 +1,14 @@
 .background{
   padding-top: 5%;
-  background-image: url("https://th.bing.com/th/id/OIP.HQVr41ncz9_Hbogylh_aTwHaEK?pid=ImgDet&rs=1");
+  background-image: url("https://th.bing.com/th/id/R.3eac856ccb68d46020653535376e4695?rik=NXZHO5tPUUQ7bg&riu=http%3a%2f%2fwww.simplynotes.in%2fwp-content%2fuploads%2f2016%2f04%2fecommerce2-benefits.jpg&ehk=TCwZaYdQhZNS6smDpwc1F2YMSzzBdZQjbgADpPxVBYU%3d&risl=&pid=ImgRaw&r=0");
   background-repeat: no-repeat;
   background-size: cover;
   height: 720px !important;
   width: 100%;
-  /* background: transparent !important; */
 }
 .p-card{
   box-shadow: 1px 1px 50px rgba(0, 0, 0, 0.3) !important;
 }
-
+.profilecard{
+background: linear-gradient(pink,aqua);
+}
