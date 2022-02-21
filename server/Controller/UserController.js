@@ -20,6 +20,16 @@ exports.oneUser = async (req, res) => {
         res.status(400).json({ error: 'get user faild' })
     }
 }
+exports.newuser = async (req, res) => {
+    try {
+      var id = req.params.id;
+      const mycourse = await Course.findOne({ _id: id }).lean();
+      res.send(mycourse);
+    } catch {
+      res.status(400).json({ error: "get course faild" });
+    }
+  };
+  exports.cre
 
 exports.addUser = async (req, res) => {
     // try {
@@ -102,7 +112,28 @@ exports.deleteUser = async (req, res) => {
     }
 }
 
+exports.newprofile = async (req,res) =>{
+    try {
+        const id = req.params.id
+        const {name,email} = req.body
 
+
+        
+         var newprofile = {
+             username:name,
+             useremail:email
+         }
+          
+         const editproduct = await User.findOneAndReplace({_id:id},newprofile)
+         if (editproduct) {
+            res.send({ success: "updated" })
+          }
+      
+        } catch {
+          res.status(400).json({ error: "Get user Faild...." })
+        }
+      }
+      
 
 
 
