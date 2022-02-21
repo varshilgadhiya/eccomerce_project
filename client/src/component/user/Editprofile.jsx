@@ -32,7 +32,6 @@ const Editprofile = () => {
                     <Typography gutterBottom variant="body1" component="div">
                         <PhoneIcon />{user.category}
                     </Typography>
-                 
                 </CardContent>
                 <CardActions>
                     {/* <Button className='my-4 mx-3' onClick={(e) => (handleCart(e, product._id))} variant='contained' size="small"><ShoppingCartIcon />&nbsp; Add To Cart</Button> */}

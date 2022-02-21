@@ -1,14 +1,17 @@
 const cart = require("../models/cart");
+const product = require("../models/Product")
 
 exports.AddToCart = async (req, res) => {
     console.log(req.body)
     const { user, item } = req.body
+    var productitem = await product.findById(item).lean() 
+    console.log(productitem);
     var available = await cart.findOne({ User: user }).lean()
     console.log(available);
     if (available) {
         var data = {
             User: available.User,
-            cart: [...available.cart,item]
+            cart: [...available.cart,productitem]
         }
         console.log(data);
         await cart.findOneAndReplace({ User: user }, data).lean()
@@ -17,7 +20,7 @@ exports.AddToCart = async (req, res) => {
     else {
         const newcart = cart.create({
             User: user,
-            cart: [item]
+            cart: [productitem]
         })
         if (newcart) {
             await newcart.save()

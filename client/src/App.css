@@ -12,3 +12,6 @@
 .profilecard{
 background: linear-gradient(pink,aqua);
 }
+.css-1u4zpwo-MuiSvgIcon-root-MuiStepIcon-root.Mui-completed{
+  color: green !important;
+}
