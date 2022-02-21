@@ -15,24 +15,13 @@ import AddressForm from './AddressForm';
 import Review from './Review';
 
 
-const steps = ['Cart Items','Shipping address'];
+const steps = ['Cart Items', 'Shipping address'];
 
 
 const theme = createTheme();
 
 export default function Cart() {
-  
 
-  function getStepContent(step) {
-    switch (step) {
-      case 0:
-        return <Review />;
-        case 1:
-          return <AddressForm />;
-      default:
-        throw new Error('Unknown step');
-    }
-  }
   const [activeStep, setActiveStep] = React.useState(0);
 
   const handleNext = () => {
@@ -72,22 +61,11 @@ export default function Cart() {
               </React.Fragment>
             ) : (
               <React.Fragment>
-                {getStepContent(activeStep)}
-                <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
-                  {activeStep !== 0 && (
-                    <Button onClick={handleBack} sx={{ mt: 3, ml: 1 }}>
-                      Back
-                    </Button>
-                  )}
-
-                  <Button
-                    variant="contained"
-                    onClick={handleNext}
-                    sx={{ mt: 3, ml: 1 }}
-                  >
-                    {activeStep === steps.length - 1 ? 'Place order' : 'Next'}
-                  </Button>
-                </Box>
+                {activeStep === 0 ?
+                  <Review next={handleNext} back={handleBack}/>
+                  :
+                  <AddressForm next={handleNext} back={handleBack}/>
+                }
               </React.Fragment>
             )}
           </React.Fragment>

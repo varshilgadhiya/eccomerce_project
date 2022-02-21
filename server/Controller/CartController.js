@@ -34,7 +34,7 @@ exports.allcart = async (req, res) => {
         const myproduct = await cart.find({}).lean();
         res.send(myproduct);
     } catch {
-        res.status(400).json({ error: "get course faild" });
+        res.status(400).json({ error: "faild" });
 
     };
 }
@@ -44,7 +44,17 @@ exports.usercart = async (req, res) => {
         const myproduct = await cart.findOne({User:id}).lean();
         res.send(myproduct);
     } catch {
-        res.status(400).json({ error: "get course faild" });
+        res.status(400).json({ error: "faild" });
+
+    };
+}
+exports.deletecart = async (req, res) => {
+    try {
+        const id = req.params.id
+        const myproduct = await cart.findOneAndDelete({User:id}).lean();
+        res.send(myproduct);
+    } catch {
+        res.status(400).json({ error: "faild" });
 
     };
 }
