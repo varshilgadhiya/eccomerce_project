@@ -7,8 +7,7 @@ const orderSchema = mongoose.Schema({
         ref: "registration"
     },
     cart: {
-        type: ObjectId,
-        ref: "Cart"
+        type: Array
     },
     address: {
         type: String
@@ -27,4 +26,4 @@ const orderSchema = mongoose.Schema({
     }
 }, { timestamps: true })
 
-module.exports = mongoose.model('Cart', orderSchema)    
+module.exports = mongoose.model('Order', orderSchema)    

@@ -65,7 +65,7 @@ const Editprofile = () => {
                     </Typography>
                 </CardContent>
                 <CardActions>
-                     <Button className='my-4 mx-3' onClick={(e) => handleCart(e)} variant='contained' size="small">&nbsp; Add To Cart</Button> 
+                    {/* <Button className='my-4 mx-3' onClick={(e) => (handleCart(e, product._id))} variant='contained' size="small">&nbsp; Add To Cart</Button> */}
                 </CardActions>
             </Grid>
         </Grid>

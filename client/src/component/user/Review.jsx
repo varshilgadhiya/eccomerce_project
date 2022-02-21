@@ -4,8 +4,9 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import axios from 'axios';
+import { Box, Button } from '@mui/material';
 
-export default function Review() {
+export default function Review(props) {
   const [totalcartprice, settotalcartprice] = React.useState(0);
   const [cart, setCart] = React.useState([]);
   const [cartitems, setcartitems] = React.useState([]);
@@ -48,6 +49,11 @@ export default function Review() {
         </ListItem>
       </List>
       <hr />
+      <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+        <Button onClick={props.next} variant="contained" sx={{ mt: 3, ml: 1 }}>
+          Next
+        </Button>
+      </Box>
     </React.Fragment>
   );
 }

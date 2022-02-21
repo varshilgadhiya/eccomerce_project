@@ -4,30 +4,52 @@ import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import axios from 'axios';
 import { useState } from 'react';
+import { Box, Button } from '@mui/material';
 
-export default function AddressForm() {
+export default function AddressForm(props) {
 
   const [fullname, setFullname] = React.useState('')
   const [address, setAddress] = useState('')
   const [city, setCity] = useState('')
   const [state, setState] = useState('')
   const [zipcode, setZipcode] = useState('')
+  const [cart, setcart] = useState([]);
+  const id = localStorage.getItem("user")
 
- useEffect(() => {
-   
-  axios.post("http://localhost:5000/order/add",)
-  .then((res,req)=>{
-    alert("order placed successfully")
-  })
-  .catch((err)=>{
-    console.log("order placed unsuccessfully")
-  })
+  React.useEffect(() => {
+    axios.get(`http://localhost:5000/cart/${id}`)
+      .then((res) => {
+        setcart(res.data.cart)
+      })
+  }, []);
 
- }, [])
- 
- 
-   
-  
+  const handlePlaceOrder = (e) => {
+    e.preventDefault()
+    const data = {
+      user: id,
+      cart: cart,
+      address: address,
+      city: city,
+      state: state,
+      zipcode: zipcode
+    }
+    axios.post("http://localhost:5000/order/add", data)
+      .then((res) => {
+        alert("order placed successfully")
+        axios.delete(`http://localhost:5000/cart/delete/${id}`)
+        .then((value) => {
+          console.log("cart Deleted");
+        })
+        props.next()
+      })
+      .catch((err) => {
+        console.log("order placed unsuccessfully")
+      })
+  }
+
+
+
+
 
   return (
     <React.Fragment>
@@ -98,6 +120,18 @@ export default function AddressForm() {
           />
         </Grid>
       </Grid>
+      <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+        <Button onClick={props.back} sx={{ mt: 3, ml: 1 }}>
+          Back
+        </Button>
+        <Button
+          variant="contained"
+          onClick={(e) => (handlePlaceOrder(e))}
+          sx={{ mt: 3, ml: 1 }}
+        >
+          Place order
+        </Button>
+      </Box>
     </React.Fragment>
   );
 }
