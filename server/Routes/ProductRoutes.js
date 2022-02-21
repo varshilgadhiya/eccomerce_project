@@ -1,7 +1,6 @@
 const express = require('express')
 const { allproduct, addproduct, updateproduct, deleteproduct, oneproduct } = require("../Controller/ProductController")
 const router = express.Router()
-const upload = require("../middleware/multer")
 
 router.get('/',allproduct)
 router.get('/one/:id',oneproduct)

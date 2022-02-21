@@ -24,6 +24,7 @@ const ResponsiveAppBar = () => {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
     const [user, setUser] = React.useState([]);
+    const [cart, setCart] = React.useState("");
 
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
@@ -45,7 +46,12 @@ const ResponsiveAppBar = () => {
     useEffect(() => {
         axios.get(`http://localhost:5000/user/${id}`, { headers: { "Authorization": `Bearer ${token}` } })
             .then((value) => (setUser(value.data)))
-        console.log(user);
+        axios.get(`http://localhost:5000/cart/${id}`, { headers: { "Authorization": `Bearer ${token}` } })
+            .then((value) => {
+                // console.log(value.data);
+                setCart(value.data.cart.length)
+            })
+        console.log(user, cart);
     }, []);
 
     return (
@@ -132,7 +138,11 @@ const ResponsiveAppBar = () => {
                                     settings.map((setting, index) => (
                                         <Link className='text-secondary text-decoration-none' to={`${settingsroute[index]}`}>
                                             <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                                                <Typography textAlign="center">{setting}</Typography>
+                                                {setting === "Cart" ?
+                                                    <Typography textAlign="center">{setting} <span style={{borderRadius:"50%"}} className="badge bg-danger text-white">{cart}</span></Typography>
+                                                    :
+                                                    <Typography textAlign="center">{setting}</Typography>
+                                                }
                                             </MenuItem>
                                         </Link>
                                     ))
