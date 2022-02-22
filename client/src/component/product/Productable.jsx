@@ -42,7 +42,7 @@ export default function Producttable() {
         if(res.data.success === "product has been delete"){
             console.log(res)
             alert("delete successfully")
-            navigate("/all-product")
+            navigate(0)
         }
         else if(res.data.error){
             alert("error")

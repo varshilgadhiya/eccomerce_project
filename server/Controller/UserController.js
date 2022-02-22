@@ -3,9 +3,10 @@ const { signAccessToken } = require("../middleware/jwt");
 const User = require("../models/User");
 const fs = require("fs")
 
+
 exports.allUser = async (req, res) => {
     try {
-        const alluser = await User.find({}).lean();
+        const alluser = await User.find({role:"user"}).lean();
         res.send(alluser);
     } catch {
         res.status(400).json({ error: 'get user faild' })

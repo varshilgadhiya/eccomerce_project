@@ -44,6 +44,7 @@ export default function AllorderTable() {
                             <TableCell className="head" align="center">Order Id</TableCell>
                             <TableCell className="head" align="center">Username</TableCell>
                             <TableCell className="head" align="center">Email</TableCell>
+                            <TableCell className="head" align="center">Status</TableCell>
                             <TableCell className="head" align="center">Items</TableCell>
                             <TableCell className="head" align="center">Address</TableCell>
                             <TableCell className="head" align="center">City</TableCell>
@@ -60,6 +61,7 @@ export default function AllorderTable() {
                                     <TableCell className="head" align="center">{index + 1}</TableCell>
                                     <TableCell align="center">{data.User.name}</TableCell>
                                     <TableCell align="center">{data.User.email}</TableCell>
+                                    <TableCell align="center">{data.status}</TableCell>
                                     <TableCell align="center">{data.cart.length} Items</TableCell>
                                     <TableCell align="center">{data.address}</TableCell>
                                     <TableCell align="center">{data.city}</TableCell>
