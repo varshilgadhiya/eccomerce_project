@@ -21,15 +21,13 @@ const useStyles = makeStyles({
 export default function AllorderTable() {
     const classes = useStyles();
 
+    const [user, setUser] = useState([])
     const [AllOrder, setAllOrder] = useState([])
-    const navigate = useNavigate()
     useEffect(() => {
         axios.get(`http://localhost:5000/order`)
             .then((value) => {
                 setAllOrder(value.data)
-                console.log(value.data)
-
-            })
+            });
     }, []);
 
 
@@ -51,6 +49,7 @@ export default function AllorderTable() {
                             <TableCell className="head" align="center">City</TableCell>
                             <TableCell className="head" align="center">State</TableCell>
                             <TableCell className="head" align="center">Zipcode</TableCell>
+                            <TableCell className="head" align="center">Cart Price</TableCell>
                             <TableCell className="head" align="center">Action</TableCell>
                         </TableRow>
                     </TableHead>
@@ -59,12 +58,14 @@ export default function AllorderTable() {
                             AllOrder.map((data, index) => (
                                 <TableRow>
                                     <TableCell className="head" align="center">{index + 1}</TableCell>
-                                    {/* <TableCell align="center">{data.username}</TableCell>
-                                    <TableCell align="center">{data.email}</TableCell> */}
+                                    <TableCell align="center">{data.User.name}</TableCell>
+                                    <TableCell align="center">{data.User.email}</TableCell>
+                                    <TableCell align="center">{data.cart.length} Items</TableCell>
                                     <TableCell align="center">{data.address}</TableCell>
                                     <TableCell align="center">{data.city}</TableCell>
                                     <TableCell align="center">{data.state}</TableCell>
-                                    <TableCell align="center">{data.zipcode}</TableCell>
+                                    <TableCell align="center">{data.zip}</TableCell>
+                                    <TableCell align="center">Rs.{data.total}</TableCell>
                                     <TableCell align="center"><button className="btn btn-info"><i class="fa fa-eye" aria-hidden="true"></i></button></TableCell>
                                 </TableRow>
                             ))

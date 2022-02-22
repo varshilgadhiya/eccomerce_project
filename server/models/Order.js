@@ -1,10 +1,8 @@
 const mongoose = require('mongoose');
-const ObjectId = require('mongodb').ObjectId;
 
 const orderSchema = mongoose.Schema({
     User: {
-        type: ObjectId,
-        ref: "registration"
+        type: Object
     },
     cart: {
         type: Array
@@ -20,6 +18,9 @@ const orderSchema = mongoose.Schema({
     },
     zip: {
         type: String
+    },
+    total: {
+        type: Number
     },
     status:{
         type:String

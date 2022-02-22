@@ -14,6 +14,7 @@ import Upadateproduct from "./component/product/Upadateproduct"
 import Shopping from './component/user/Shopping';
 import Cart from './component/user/Cart';
 import Editprofile from './component/user/Editprofile';
+import AllorderTable from './component/admin/Allorder';
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
           <Route exact path="/cart" element={<Cart />} />
           <Route exact path="/editprofile" element={<Editprofile />} />
           <Route exact path="/all-product" element={<Producttable />} />
+          <Route exact path="/all-orders" element={<AllorderTable />} />
           <Route exact path="/add-product" element={<Addproduct />} />
           <Route exact path="/shopping" element={<Shopping />} />
           <Route exact path="/upadate-product/:id" element={<Upadateproduct />} />
