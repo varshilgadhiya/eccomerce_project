@@ -12,11 +12,12 @@ import { Grid } from '@mui/material';
 const Profile = () => {
     const navigate = useNavigate()
     const [user, setUser] = useState([]);
+    const id = localStorage.getItem("user")
     useEffect(() => {
-        axios.get(`http://localhost:5000/user/${localStorage.getItem("user")}`, { headers: { "Authorization": `Bearer ${localStorage.getItem("token")}` } })
+        axios.get(`http://localhost:5000/user/${id}`, { headers: { "Authorization": `Bearer ${localStorage.getItem("token")}` } })
             .then((value) => {
                 setUser(value.data)
-                console.log(value.data)
+                console.log(user)
                 if (value.data.message || value.data.message === "Access Denied") {
                     navigate("/")
                 }
@@ -26,18 +27,18 @@ const Profile = () => {
             })
     }, []);
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
+    // const handleSubmit = (event) => {
+    //     event.preventDefault();
 
-        axios.post("http://localhost:5000/Edit")
-            .then((res) => {
+    //     axios.post("http://localhost:5000/Edit")
+    //         .then((res) => {
 
-                window.location = "/Editprofile"
-            })
-            .catch((err) => {
-                console.log(err)
-            })
-    };
+    //             window.location = "/Editprofile"
+    //         })
+    //         .catch((err) => {
+    //             console.log(err)
+    //         })
+    // };
 
 
     return (
@@ -57,8 +58,7 @@ const Profile = () => {
                             <h5><PhoneIcon /> {user.phone}</h5>
                         </div>
                         <button
-                            onClick={(e) => (handleSubmit(e))}
-                            type="Edit Profile"
+                            // onClick={(e) => (handleSubmit(e))}
                             className='btn btn-primary w-50'
                             variant="contained"
                             sx={{ mt: 1, mb: 1 }}

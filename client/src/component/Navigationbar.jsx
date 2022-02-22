@@ -24,7 +24,7 @@ const ResponsiveAppBar = () => {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
     const [user, setUser] = React.useState([]);
-    const [cart, setCart] = React.useState("");
+    const [cart, setCart] = React.useState([]);
 
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
@@ -49,7 +49,7 @@ const ResponsiveAppBar = () => {
         axios.get(`http://localhost:5000/cart/${id}`, { headers: { "Authorization": `Bearer ${token}` } })
             .then((value) => {
                 // console.log(value.data);
-                setCart(value.data.cart.length)
+                setCart(value.data.cart)
             })
         console.log(user, cart);
     }, []);
@@ -141,7 +141,7 @@ const ResponsiveAppBar = () => {
                                         <Link className='text-secondary text-decoration-none' to={`${settingsroute[index]}`}>
                                             <MenuItem key={setting} onClick={handleCloseUserMenu}>
                                                 {setting === "Cart" ?
-                                                    <Typography textAlign="center">{setting} <span style={{ borderRadius: "50%" }} className="badge bg-danger text-white">{cart}</span></Typography>
+                                                    <Typography textAlign="center">{setting} <span style={{ borderRadius: "50%" }} className="badge bg-danger text-white">{cart?cart.length:0}</span></Typography>
                                                     :
                                                     <Typography textAlign="center">{setting}</Typography>
                                                 }

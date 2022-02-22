@@ -12,13 +12,13 @@ exports.allUser = async (req, res) => {
     }
 }
 exports.oneUser = async (req, res) => {
-    try {
+    // try {
         const id = req.params.id
         const oneuser = await User.findById(id).lean();
         res.send(oneuser);
-    } catch {
-        res.status(400).json({ error: 'get user faild' })
-    }
+    // } catch {
+    //     res.status(400).json({ error: 'get user faild' })
+    // }
 }
 exports.newuser = async (req, res) => {
     try {
@@ -29,7 +29,6 @@ exports.newuser = async (req, res) => {
       res.status(400).json({ error: "get course faild" });
     }
   };
-  exports.cre
 
 exports.addUser = async (req, res) => {
     // try {
@@ -98,12 +97,6 @@ exports.updateUser = async (req, res) => {
     }
 }
 
-
-
-
-
-
-
 exports.deleteUser = async (req, res) => {
     try {
         res.json({ msg: "hii mongo" })
@@ -112,27 +105,27 @@ exports.deleteUser = async (req, res) => {
     }
 }
 
-exports.newprofile = async (req,res) =>{
-    try {
-        const id = req.params.id
-        const {name,email} = req.body
+// exports.newprofile = async (req,res) =>{
+//     try {
+//         const id = req.params.id
+//         const {name,email} = req.body
 
 
         
-         var newprofile = {
-             username:name,
-             useremail:email
-         }
+//          var newprofile = {
+//              username:name,
+//              useremail:email
+//          }
           
-         const editproduct = await User.findOneAndReplace({_id:id},newprofile)
-         if (editproduct) {
-            res.send({ success: "updated" })
-          }
+//          const editproduct = await User.findOneAndReplace({_id:id},newprofile)
+//          if (editproduct) {
+//             res.send({ success: "updated" })
+//           }
       
-        } catch {
-          res.status(400).json({ error: "Get user Faild...." })
-        }
-      }
+//         } catch {
+//           res.status(400).json({ error: "Get user Faild...." })
+//         }
+//       }
       
 
 
