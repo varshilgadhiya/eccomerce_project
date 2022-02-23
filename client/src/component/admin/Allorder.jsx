@@ -9,6 +9,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import { Typography } from '@material-ui/core';
 import axios from 'axios';
+import Navigationbar from "../Navigationbar"
 import { useNavigate } from 'react-router-dom';
 
 const useStyles = makeStyles({
@@ -36,6 +37,7 @@ export default function AllorderTable() {
 
     return (
         <>
+        <Navigationbar />
             <Typography variant="h4" className="text-center state my-4">All Order</Typography>
             <TableContainer component={Paper}>
                 <Table className={classes.table} aria-label="simple table">

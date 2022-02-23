@@ -1,10 +1,17 @@
+import { CircularProgress } from '@mui/material'
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
+import Navigationbar from './Navigationbar'
 
 const Logout = () => {
-    localStorage.clear()
-    window.location = "/"
+  const navigate = useNavigate()
+  localStorage.clear()
+  window.location = "/"
   return (
-    <div>Logout</div>
+    <>
+      <Navigationbar />
+      <div className='text6-center my-4'><CircularProgress /></div>
+    </>
   )
 }
 

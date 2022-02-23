@@ -3,8 +3,9 @@ import axios from 'axios';
 import { Button, Card, CardActions, CardContent, CardMedia, Grid, Typography } from '@mui/material';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { useNavigate } from 'react-router-dom';
+import Navigationbar from "../Navigationbar"
 
-const Shopping = ({ product }) => {
+const Shopping = () => {
     const navigate = useNavigate()
     const [products, setProducts] = useState([]);
     useEffect(() => {
@@ -24,56 +25,41 @@ const Shopping = ({ product }) => {
         axios.post("http://localhost:5000/cart/add-item", data)
             .then((value) => {
                 alert("add to cart successfully")
-                navigate("/shopping")
+                navigate("/cart")
             })
             .catch((err) => {
                 console.log(err);
             })
     }
     return (
+        <>
+            <Navigationbar />
 
 
-        <div className="my-4">
-            <h4 className="text-center state">All Products</h4>
-            <hr />
-            <Grid container className='px-4' spacing={2}>
-                {products !== undefined ?
-                    products.map((product, index) => (
-                        <Grid item sm={3} xs={12}>
-                            <Card className='p-card' sx={{ maxWidth: 345 }}>
-                                <CardMedia
-                                    component="img"
-                                    height="200"
-                                    image={product.pic ? product.pic[0] : null}
-                                    alt={product.name}
-                                />
-                                <CardContent>
-                                    <Typography gutterBottom variant="h5" component="div">
-                                        {product.name}
-                                    </Typography>
-                                    <Typography gutterBottom variant="h6" component="div">
-                                        Rs.{product.price} <span class="badge bg-warning text-dark">{product.offer} %</span>
-                                    </Typography>
-                                    <Typography gutterBottom variant="body1" component="div">
-                                        {product.category}
-                                    </Typography>
-                                    <Typography variant="body2" color="text.secondary">
-                                        {product.discription}
-                                    </Typography>
-                                </CardContent>
-                                <CardActions>
-                                    <Button className='my-4 mx-3' onClick={(e) => (handleCart(e, product._id))} variant='contained' size="small"><ShoppingCartIcon />&nbsp; Add To Cart</Button>
-                                </CardActions>
-                            </Card>
-                        </Grid>
-                    ))
-                    :
-                    null
-                }
-            </Grid>
+            <div className="my-4">
+                <h4 className="text-center state">All Products</h4>
+                <hr />
+                <Grid container className='px-4' spacing={2}>
+                    {products !== undefined ?
+                        products.map((product, index) => (
+                            <Grid item sm={3} xs={12}>
+                                <div class="product-card">
+                                    <img src={product.pic[0]} height={200} width={"100%"} alt={product.name} />
+                                    <h3 className='my-2'>{product.name}</h3>
+                                    <p class="price">Rs.{product.price}&nbsp;&nbsp;&nbsp;<span class="badge bg-danger text-white">{product.offer} %</span></p>
+                                    <p>{product.discription.slice(0,25)}...</p>
+                                    <p className='py-0'><button onClick={(e) => (handleCart(e, product._id))}>Add to Cart</button></p>
+                                </div>
+                            </Grid>
+                        ))
+                        :
+                        null
+                    }
+                </Grid>
 
-        </div>
+            </div>
 
+        </>
     )
 }
 

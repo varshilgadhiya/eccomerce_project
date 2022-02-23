@@ -5,7 +5,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
+import {Link} from 'react-router-dom';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
@@ -14,6 +14,7 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import axios from 'axios';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function Copyright(props) {
   return (
@@ -33,7 +34,7 @@ const theme = createTheme();
 export default function SignIn() {
   const [email, setEmail] = useState("")
   const [pass, setPass] = useState("")
-
+const navigate = useNavigate()
 
 
   const handleSubmit = (event) => {
@@ -48,7 +49,7 @@ export default function SignIn() {
       localStorage.setItem("token",res.data.token)
       localStorage.setItem("user",res.data.id)
       localStorage.setItem("role",res.data.role)
-      window.location = "/profile"
+      navigate("/profile")
     })
     .catch((err)=>{
       console.log(err)
@@ -105,8 +106,8 @@ export default function SignIn() {
             >
               Sign In
             </Button>
-            <h5>
-                    create a new account?  <a style={{marginLeft:"10px"}} href="http://localhost:3000/registration" >Registration form</a></h5>
+            <h6>
+                    create a new account?  <Link to="/registration" >Registration form</Link></h6>
         
            
           </Box>

@@ -15,6 +15,7 @@ import AddressForm from './AddressForm';
 import Review from './Review';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import Navigationbar from "../Navigationbar"
 
 
 
@@ -46,6 +47,7 @@ export default function Cart() {
 
   return (
     <ThemeProvider theme={theme}>
+      <Navigationbar />
       <CssBaseline />
       <Container component="main" maxWidth="sm" sx={{ mb: 4 }}>
         {cart ?

@@ -7,7 +7,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import axios from 'axios'
-import { Link } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 
 const theme = createTheme();
@@ -17,7 +17,7 @@ export default function SignIn() {
   const [name, setname] = React.useState('')
   const [email, setemail] = React.useState('')
   const [phone, setphone] = React.useState('')
-  const [pic,setpic] = React.useState([])
+  const [pic, setpic] = React.useState([])
   const [pass, setpass] = React.useState('')
   const [conpass, setconpass] = React.useState('')
 
@@ -41,13 +41,13 @@ export default function SignIn() {
       data.append("email", email)
       data.append("pass", pass)
       data.append("phone", phone)
-      data.append("pic",pic)
+      data.append("pic", pic)
       data.append("conpass", conpass)
 
-      alert("added successfully") 
+      alert("added successfully")
 
 
-      axios.post("http://localhost:5000/create/",data)
+      axios.post("http://localhost:5000/create/", data)
         .then((res) => console.log(res))
         .catch((err) => console.log(err));
 
@@ -114,7 +114,7 @@ export default function SignIn() {
               label="Profilr pic"
               name="pic"
             />
-            
+
             <TextField
               margin="normal"
               required
@@ -142,16 +142,15 @@ export default function SignIn() {
               type="submit"
               className='btn btn-success w-100 my-4'
               fullWidth
-              variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-               Registration
+              SIGN UP
             </button>
-         
-            <h4>
-                    Don't have an account?  <a style={{marginLeft:"25px"}} href="http://localhost:3000" >Login in</a></h4>
-        
-            </Box>
+            <h6>
+              Don't have an account?  <Link to="/" >Login</Link>
+            </h6>
+
+          </Box>
         </Box>
       </Container>
     </ThemeProvider>

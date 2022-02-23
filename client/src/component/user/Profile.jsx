@@ -7,6 +7,7 @@ import PhoneIcon from '@mui/icons-material/Phone';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { Grid } from '@mui/material';
+import Navigationbar from "../Navigationbar"
 
 
 const Profile = () => {
@@ -42,40 +43,42 @@ const Profile = () => {
 
 
     return (
-        <div className='background' >
+        <>
+            <Navigationbar />
+            <div className='background' >
+                <Grid container spacing={2}>
+                    <Grid item sm={4} xs={0}></Grid>
+                    <Grid item sm={4} xs={12}>
+                        <Card className='p-4 profilecard' >
+                            <Card.Img variant="top" height={"300px"} src={user.pic} />
+                            <Card.Body>
+                                <h2 className='text-primary'>Profile<hr /></h2>
+                            </Card.Body>
+                            <div className='right' style={{ marginLeft: "10px" }} >
+                                <h4>Profile Detail</h4>
+                                <h5><MailIcon /> {user.email}</h5>
+                                <h5><PhoneIcon /> {user.phone}</h5>
+                            </div>
+                            <button
+                                // onClick={(e) => (handleSubmit(e))}
+                                className='btn btn-primary w-50'
+                                variant="contained"
+                                sx={{ mt: 1, mb: 1 }}
+                                style={{ marginLeft: "60px" }}
+                            >
 
-            <Grid container spacing={2}>
-                <Grid item sm={4} xs={0}></Grid>
-                <Grid item sm={4} xs={12}>
-                    <Card className='p-4 profilecard' >
-                        <Card.Img variant="top" height={"300px"} src={user.pic} />
-                        <Card.Body>
-                            <h2 className='text-primary'>Profile<hr /></h2>
-                        </Card.Body>
-                        <div className='right' style={{ marginLeft: "10px" }} >
-                            <h4>Profile Detail</h4>
-                            <h5><MailIcon /> {user.email}</h5>
-                            <h5><PhoneIcon /> {user.phone}</h5>
-                        </div>
-                        <button
-                            // onClick={(e) => (handleSubmit(e))}
-                            className='btn btn-primary w-50'
-                            variant="contained"
-                            sx={{ mt: 1, mb: 1 }}
-                            style={{ marginLeft: "60px" }}
-                        >
+                                <EditIcon /> Edit Profile
+                            </button>
 
-                            <EditIcon /> Edit Profile
-                        </button>
+                        </Card>
+                    </Grid>
+                    <Grid item sm={4} xs={0}></Grid>
 
-                    </Card>
                 </Grid>
-                <Grid item sm={4} xs={0}></Grid>
 
-            </Grid>
+            </div>
 
-        </div>
-
+        </>
     )
 }
 

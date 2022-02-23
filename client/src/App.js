@@ -4,7 +4,6 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import Registrationform from './component/Registrationform';
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Loginform from './component/Loginform'
-import Navigationbar from './component/Navigationbar';
 import Logout from './component/Logout';
 import Profile from './component/user/Profile';
 import AlluserTable from './component/admin/AlluserTable';
@@ -20,7 +19,6 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        <Navigationbar />
         <Routes>
           <Route exact path="/" element={<Loginform />} />
           <Route exact path="/logout" element={<Logout />} />
