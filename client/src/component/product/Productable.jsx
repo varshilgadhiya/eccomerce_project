@@ -10,6 +10,7 @@ import Paper from "@material-ui/core/Paper";
 import { Typography } from "@material-ui/core";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import Navigationbar from "../Navigationbar"
 
 const useStyles = makeStyles({
   table: {
@@ -59,6 +60,7 @@ export default function Producttable() {
     
   return (
     <>
+    <Navigationbar />
       <Typography variant="h4" className="text-center state my-4">
         All Products
       </Typography>

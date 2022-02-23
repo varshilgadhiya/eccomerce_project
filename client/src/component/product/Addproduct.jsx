@@ -8,6 +8,7 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import axios from 'axios'                 
 import { useNavigate } from 'react-router-dom';
+import Navigationbar from "../Navigationbar"
 
 
 const theme = createTheme();
@@ -51,6 +52,7 @@ export default function Addproduct() {
     }
     return (
         <ThemeProvider theme={theme}>
+            <Navigationbar />
             <Container component="main" maxWidth="xs">
                 <CssBaseline />
                 <Box

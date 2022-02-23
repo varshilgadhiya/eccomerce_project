@@ -18,7 +18,7 @@ exports.AddToCart = async (req, res) => {
         res.send("cart updated")
     }
     else {
-        const newcart = cartModel.create({
+        const newcart = await cartModel.create({
             User: user,
             cart: [productitem]
         })
