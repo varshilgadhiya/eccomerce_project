@@ -1,6 +1,6 @@
 .background{
   padding-top: 5%;
-  background-image: url("https://th.bing.com/th/id/R.3eac856ccb68d46020653535376e4695?rik=NXZHO5tPUUQ7bg&riu=http%3a%2f%2fwww.simplynotes.in%2fwp-content%2fuploads%2f2016%2f04%2fecommerce2-benefits.jpg&ehk=TCwZaYdQhZNS6smDpwc1F2YMSzzBdZQjbgADpPxVBYU%3d&risl=&pid=ImgRaw&r=0");
+  background-image: url("https://th.bing.com/th/id/R.856c9cbd3663d95cb042595ce8954502?rik=Rv3U90ajiDESmA&riu=http%3a%2f%2fwww.pixelstalk.net%2fwp-content%2fuploads%2f2016%2f06%2fSolid-Color-Wallpaper-HD.jpg&ehk=nnLaUzFab3kaf1gtgY9EliBRsuxbmDYZgEJyrYluGSk%3d&risl=&pid=ImgRaw&r=0");
   background-repeat: no-repeat;
   background-size: cover;
   height: 720px !important;
@@ -10,7 +10,7 @@
   box-shadow: 1px 1px 50px rgba(0, 0, 0, 0.3) !important;
 }
 .profilecard{
-background: linear-gradient(pink,aqua);
+background-color: white;
 }
 .css-1u4zpwo-MuiSvgIcon-root-MuiStepIcon-root.Mui-completed{
   color: green !important;
