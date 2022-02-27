@@ -10,7 +10,7 @@ import Paper from '@material-ui/core/Paper';
 import { Typography } from '@material-ui/core';
 import axios from 'axios';
 import Navigationbar from "../Navigationbar"
-import { useNavigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 const useStyles = makeStyles({
     table: {
@@ -21,6 +21,7 @@ const useStyles = makeStyles({
 
 export default function AllorderTable() {
     const classes = useStyles();
+    const navigate = useNavigate()
 
     const [user, setUser] = useState([])
     const [AllOrder, setAllOrder] = useState([])
@@ -32,7 +33,10 @@ export default function AllorderTable() {
     }, []);
 
 
+const overview = () => {
+    navigate("/overview")
 
+}
 
 
     return (
@@ -70,7 +74,7 @@ export default function AllorderTable() {
                                     <TableCell align="center">{data.state}</TableCell>
                                     <TableCell align="center">{data.zip}</TableCell>
                                     <TableCell align="center">Rs.{data.total}</TableCell>
-                                    <TableCell align="center"><button className="btn btn-info"><i class="fa fa-eye" aria-hidden="true"></i></button></TableCell>
+                                    <TableCell align="center"><button className="btn btn-info"><i class="fa fa-eye" onClick={(e)=> overview(e)}    aria-hidden="true"></i></button></TableCell>
                                 </TableRow>
                             ))
                         }

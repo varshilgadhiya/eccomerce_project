@@ -14,6 +14,7 @@ import Shopping from './component/user/Shopping';
 import Cart from './component/user/Cart';
 import Editprofile from './component/user/Editprofile';
 import AllorderTable from './component/admin/Allorder';
+import Overview from './component/admin/Overview';
 
 function App() {
   return (
@@ -29,7 +30,7 @@ function App() {
           <Route exact path="/all-product" element={<Producttable />} />
           <Route exact path="/all-orders" element={<AllorderTable />} />
           <Route exact path="/add-product" element={<Addproduct />} />
-          {/* <Route exact path="/overview" element={<Overview />} /> */}
+          <Route exact path="/overview" element={<Overview />} />
           <Route exact path="/shopping" element={<Shopping />} />
           <Route exact path="/upadate-product/:id" element={<Upadateproduct />} />
           <Route exact path="/logout" element={<Logout />} />
