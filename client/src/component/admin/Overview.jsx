@@ -32,42 +32,97 @@ const Orderview = () => {
 
     return (
         <>
-        
-            <div className='background' >
-                <Grid container spacing={2}>
-                    <Grid item sm={4} xs={0}></Grid>
-                    <Grid item sm={4} xs={12}>
-                        <Card className='p-4 profilecard' >
-                            <Card.Img variant="top" height={"300px"} src={user.pic} />
-                            <Card.Body>
-                                <h2 className='text-primary'>Profile<hr /></h2>
-                            </Card.Body>
-                            <div className='right' style={{ marginLeft: "10px" }} >
-                                <h4>Profile Detail</h4>
-                                <h5><MailIcon /> {user.email}</h5>
-                                <h5><PhoneIcon /> {user.phone}</h5>
-                            </div>
-                            <button
-                                // onClick={(e) => (handleSubmit(e))}
-                                className='btn btn-primary w-50'
-                                variant="contained"
-                                sx={{ mt: 1, mb: 1 }}
-                                style={{ marginLeft: "60px" }}
-                            >
+            <div className="row">
+                <div className="col-3"></div>
+                <div className="col-3">dfdnn</div>
+                <div className="col-3">fdfdfnnn</div>
+                <div className="col-3"></div>
 
-                                <EditIcon /> Edit Profile
-                            </button>
 
-                        </Card>
-                    </Grid>
-                    <Grid item sm={4} xs={0}></Grid>
 
-                </Grid>
 
             </div>
+
 
         </>
     )
 }
 
 export default Orderview
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// <div className='background' >
+// <Grid container spacing={2}>
+//     <Grid item sm={4} xs={0}></Grid>
+//     <Grid item sm={4} xs={12}>
+//         <Card className='p-4 profilecard' >
+//             <Card.Img variant="top" height={"300px"} src={user.pic} />
+//             <Card.Body>
+//                 <h2 className='text-primary'>Profile<hr /></h2>
+//             </Card.Body>
+//             <div className='right' style={{ marginLeft: "10px" }} >
+//                 <h4>Profile Detail</h4>
+//                 <h5><MailIcon /> {user.email}</h5>
+//                 <h5><PhoneIcon /> {user.phone}</h5>
+//             </div>
+//             <button
+//                 // onClick={(e) => (handleSubmit(e))}
+//                 className='btn btn-primary w-50'
+//                 variant="contained"
+//                 sx={{ mt: 1, mb: 1 }}
+//                 style={{ marginLeft: "60px" }}
+//             >
+
+//                 <EditIcon /> Edit Profile
+//             </button>
+
+//         </Card>
+//     </Grid>
+//     <Grid item sm={4} xs={0}></Grid>
+
+// </Grid>
+
+// </div>
