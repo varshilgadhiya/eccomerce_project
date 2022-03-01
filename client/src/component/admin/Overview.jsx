@@ -34,8 +34,13 @@ const Orderview = () => {
         <>
             <div className="row">
                 <div className="col-3"></div>
-                <div className="col-3">dfdnn</div>
-                <div className="col-3">fdfdfnnn</div>
+                <div className="col-3 left">
+                    <div classname="left">overview
+                    </div>
+                    
+                    
+                    </div>
+                <div className="col-3 right"> fdfdfnnn</div>
                 <div className="col-3"></div>
 
 

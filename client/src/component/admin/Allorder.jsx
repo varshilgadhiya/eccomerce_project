@@ -11,7 +11,7 @@ import { Typography } from '@material-ui/core';
 import axios from 'axios';
 import Navigationbar from "../Navigationbar"
 import { Navigate, useNavigate } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
+
 
 const useStyles = makeStyles({
     table: {

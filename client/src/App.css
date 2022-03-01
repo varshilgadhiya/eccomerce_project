@@ -16,11 +16,20 @@ background-color: white;
   color: green !important;
 }
 
+.col-3.left{
+  width: 400px;
+  display: flex;
+  height: 600px;
+  padding: 3px;
+  border: 4px solid blue;
+}
 
-
-
-
-
+.col-3.right{
+  width: 400px;
+  display: flex;
+  height: 600px;
+  border: 4px solid blue;
+}
 
 
 .product-card {
